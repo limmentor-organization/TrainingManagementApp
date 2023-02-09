@@ -1,0 +1,32 @@
+<div th:fragment="create_contents">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mx-auto border border-dark col-4 p-5 m-5">
+                <form method="POST" th:action="@{/physicals/create}" th:object="${physicalDetailForm}" novalidate>
+                    <div th:classappend="${#fields.hasErrors('recordedDate')}?'has-error'">
+                        <label class="font-weight-bold">日付</label>
+                        <input class="col-12" type="date" th:field="*{recordedDate}" />
+                        <span class="text-danger" th:if="${#fields.hasErrors('recordedDate')}" th:errors="*{recordedDate}">
+                            recordedDate error
+                        </span>
+                    </div>
+                    <br>
+                    <div th:classappend="${#fields.hasErrors('weight')}?'has-error'">
+                        <label class="font-weight-bold">体重</label>
+                        <input class="col-12" type="number" step="0.1" th:field="*{weight}" />
+                        <span class="text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">
+                            weight error
+                        </span>
+                    </div>
+                    <br>
+                    <div>
+                        <button class="btn btn-outline-dark btn-sm col-12" type="submit">記録</button>
+                    </div>
+                    <div class="text-center my-3">
+                        <a th:href=@{/home} class="btn btn-outline-danger btn-sm col-12" th:text="#{app.button.back}"></a>                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

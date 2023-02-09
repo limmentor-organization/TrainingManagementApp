@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhysicalMapper">
+
+	<insert id="insert" parameterType="com.entity.PhysicalDetail">
+		INSERT INTO physical_details (weight, recorded_date, created_at, user_id) VALUES (#{weight}, #{recordedDate}, CURRENT_TIMESTAMP(), #{userId});
+	</insert>
+	
+ 	<select id="selectByUserId" resultType="com.entity.PhysicalDetail">
+		SELECT *
+		FROM physical_details
+		WHERE user_id = #{userId}
+		ORDER BY recorded_date DESC
+		LIMIT #{pageSize}
+		OFFSET #{offset};
+	</select>
+
+	<select id="countByUserId" resultType="int">
+		SELECT COUNT(*)
+		FROM physical_details
+		WHERE user_id = #{userId};
+	</select>
+	
+	<select id="selectByPk" resultType="com.entity.PhysicalDetail">
+		SELECT *
+		FROM physical_details
+		WHERE created_at = #{createdAt}
+		AND user_id = #{userId};
+	</select>
+	
+	<update id="updateByPk">
+		UPDATE physical_details SET recorded_date = #{recordedDate}, weight = #{weight}
+		WHERE created_at = #{createdAt}
+		AND user_id = #{userId};
+	</update>
+	
+	<delete id="deleteByPk">
+		DELETE FROM physical_details
+		WHERE created_at = #{createdAt}
+		AND user_id = #{userId};
+	</delete>
+	
+</mapper>

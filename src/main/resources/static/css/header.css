@@ -1,0 +1,20 @@
+.header_frame {
+    background-color: #000;
+    padding: 10px;
+    color: #fff;
+}
+
+.header_frame_app_name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_app_name {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+}
+.header_app_name:hover {
+    text-decoration: none;
+    color: #fff;
+}
